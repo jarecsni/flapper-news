@@ -1,3 +1,10 @@
+
+// DB stuff
+var mongoose = require('mongoose');
+var db = mongoose.connect('mongodb://localhost/flapper-news');
+require('./models/Posts');
+require('./models/Comments');
+
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
