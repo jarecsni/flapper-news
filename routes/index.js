@@ -39,6 +39,10 @@ router.get('/posts/:post', function(req, res, next) {
 	});
 });
 
+router.get('/posts/:post/comments/:comment', function(req, res, next) {
+	res.json(req.comment);
+});
+
 
 router.param('post', function(req, res, next, id) {
 	var query = Post.findById(id);
@@ -67,6 +71,14 @@ router.put('/posts/:post/upvote', function(req, res, next) {
 		res.json(post);
 	});
 });
+
+router.put('/posts/:post/comments/:comment/upvote', function(req, res, next) {
+	req.comment.upvote(function(err, comment){
+		if (err) { return next(err); }
+		res.json(comment);
+	});
+});
+
 
 /**
  * Good example of how to save auxiliary information belonging to another entity.
